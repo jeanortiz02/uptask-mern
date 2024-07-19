@@ -10,7 +10,8 @@ connectDB()
 
 const app = express();
 
-
+// Leer body
+app.use(express.json());
 // Routes
 app.use('/api/projects', projectRouter);
 

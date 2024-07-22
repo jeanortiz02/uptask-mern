@@ -6,7 +6,7 @@ export interface IProject extends Document  {
     projectName: string,
     clientName: string,
     description: string,
-    task: PopulatedDoc<ITask & Document>[]
+    tasks: PopulatedDoc<ITask & Document>[]
 }
 
 const ProjectSchema : Schema = new Schema({
@@ -27,7 +27,7 @@ const ProjectSchema : Schema = new Schema({
         required: true,
         trim: true,
     },
-    task: [
+    tasks: [
         {
             type: Types.ObjectId,
             ref: 'Task',

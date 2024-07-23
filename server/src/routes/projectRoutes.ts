@@ -3,9 +3,12 @@ import { ProjectController } from "../controllers/ProjectController";
 import { body, param } from "express-validator";
 import { handleInputErrors } from "../middleware/validation";
 import { TaskController } from "../controllers/TaskController";
-import { validateProjectExists } from "../middleware/project";
+import { projectExists } from "../middleware/project";
+import { taskBelongToProject, taskExists } from "../middleware/task";
 
 const router = Router();
+
+/* Routes for Projects */
 
 router.post('/', 
 
@@ -31,6 +34,7 @@ router.get('/:id',
     ProjectController.getProjectById
 
 );
+
 router.put('/:id', 
     
     param('id').isMongoId().withMessage('ID no valido'),
@@ -54,7 +58,7 @@ router.delete('/:id',
 );
 
 /** Routes for task */
-router.param('projectId', validateProjectExists)
+router.param('projectId', projectExists)
 
 router.post('/:projectId/tasks', 
     body('name')
@@ -68,10 +72,39 @@ router.post('/:projectId/tasks',
 router.get('/:projectId/tasks', 
     TaskController.getProjectTask
 )
+
+router.param('taskId', taskExists)
+router.param('taskId', taskBelongToProject)
+
 router.get('/:projectId/tasks/:taskId', 
     param('taskId').isMongoId().withMessage('ID no valido'),
     handleInputErrors,
     TaskController.getTaskById
+)
+router.put('/:projectId/tasks/:taskId', 
+    param('taskId').isMongoId().withMessage('ID no valido'),
+    body('name')
+    .notEmpty().withMessage('El nombre de la tarea es requerido'),
+    body('description')
+        .notEmpty().withMessage('La descripcion de la tarea es requerida'),
+    handleInputErrors,
+    TaskController.updatedTask
+)
+
+router.delete('/:projectId/tasks/:taskId', 
+    param('taskId').isMongoId().withMessage('ID no valido'),
+    handleInputErrors,
+    TaskController.deleteTask
+)
+
+/* Check Status  */ 
+router.post('/:projectId/tasks/:taskId/status', 
+    param('taskId').isMongoId().withMessage('ID no valido'),
+    body('status')
+        .notEmpty().withMessage('El estado es obligatorio'),
+    handleInputErrors,
+    TaskController.updateStatus
+
 )
 
 export default router;

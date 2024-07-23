@@ -1,4 +1,0 @@
-password = pwQThHRqNCmFeMmx
-user = root 
-
-mongodb+srv://root:<password>@uptask.znjtwfx.mongodb.net/

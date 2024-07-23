@@ -2,7 +2,7 @@
     "clientName": "Thunder Client",
     "collectionName": "Uptask - MERN",
     "collectionId": "4d3f30e3-289c-40c1-a0bf-d79c47a81a90",
-    "dateExported": "2024-07-22T19:27:07.275Z",
+    "dateExported": "2024-07-23T19:19:25.193Z",
     "version": "1.2",
     "folders": [
         {
@@ -38,15 +38,15 @@
             "colId": "4d3f30e3-289c-40c1-a0bf-d79c47a81a90",
             "containerId": "898854ea-0dd1-4a42-a25e-7a9ef3c665bb",
             "name": "POST - Create Task",
-            "url": "http://localhost:4000/api/projects/669e9dd049eaf5fddd35a6b7/tasks",
+            "url": "http://localhost:4000/api/projects/669fe8079f305d588ff0fe58/tasks",
             "method": "POST",
             "sortNum": 10000,
             "created": "2024-07-22T16:16:38.435Z",
-            "modified": "2024-07-22T19:12:56.715Z",
+            "modified": "2024-07-23T17:28:00.276Z",
             "headers": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"name\" : \"Definir Framewokr\",\n  \"description\" : \"Buscar un software de CSS\"\n}",
+                "raw": "{\n  \"name\" : \"Tarea 2\",\n  \"description\" : \"Buscar un software de CSS\"\n}",
                 "form": []
             }
         },
@@ -59,11 +59,11 @@
             "method": "POST",
             "sortNum": 20000,
             "created": "2024-07-19T17:05:20.284Z",
-            "modified": "2024-07-19T18:07:53.320Z",
+            "modified": "2024-07-23T16:38:04.106Z",
             "headers": [],
             "body": {
                 "type": "json",
-                "raw": "{\n    \"projectName\": \"Punto de venta 5\",\n    \"clientName\": \"ARVI\",\n    \"description\": \"Projecto con React Native\"\n}",
+                "raw": "{\n    \"projectName\": \"Punto de venta 3\",\n    \"clientName\": \"ARVI\",\n    \"description\": \"Projecto con React Native\"\n}",
                 "form": []
             }
         },
@@ -72,23 +72,52 @@
             "colId": "4d3f30e3-289c-40c1-a0bf-d79c47a81a90",
             "containerId": "898854ea-0dd1-4a42-a25e-7a9ef3c665bb",
             "name": "GET - Obtener task",
-            "url": "http://localhost:4000/api/projects/669e9dcf49eaf5fddd35a6b5/tasks",
+            "url": "http://localhost:4000/api/projects/669fe8079f305d588ff0fe58/tasks",
             "method": "GET",
             "sortNum": 20000,
             "created": "2024-07-22T17:30:47.551Z",
-            "modified": "2024-07-22T18:00:51.317Z",
+            "modified": "2024-07-23T17:29:07.003Z",
             "headers": []
+        },
+        {
+            "_id": "a60c573f-1d91-4a76-b429-cd80fd5de874",
+            "colId": "4d3f30e3-289c-40c1-a0bf-d79c47a81a90",
+            "containerId": "898854ea-0dd1-4a42-a25e-7a9ef3c665bb",
+            "name": "PUT- Update task by Id",
+            "url": "http://localhost:4000/api/projects/669ff48594c0386b6bcc03de/tasks/669ff42a94c0386b6bcc03d4",
+            "method": "PUT",
+            "sortNum": 20000,
+            "created": "2024-07-23T16:05:13.963Z",
+            "modified": "2024-07-23T18:24:01.161Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\" : \"Editado\",\n  \"description\" : \"Descripcion actualizada\"\n}",
+                "form": []
+            }
         },
         {
             "_id": "4f6ed485-369a-4c06-84f0-288522f89aa6",
             "colId": "4d3f30e3-289c-40c1-a0bf-d79c47a81a90",
             "containerId": "585fd32b-d1c8-4acd-b63c-6ebd8d34057b",
             "name": "GET - Obtener un projecto por su ID",
-            "url": "http://localhost:4000/api/projects/669e9dcf49eaf5fddd35a6b5",
+            "url": "http://localhost:4000/api/projects/669fe7d49f305d588ff0fe50",
             "method": "GET",
             "sortNum": 30000,
             "created": "2024-07-19T18:02:34.798Z",
-            "modified": "2024-07-22T18:05:31.773Z",
+            "modified": "2024-07-23T17:27:07.263Z",
+            "headers": []
+        },
+        {
+            "_id": "02770e16-3d32-48d3-a331-49d85e6691e9",
+            "colId": "4d3f30e3-289c-40c1-a0bf-d79c47a81a90",
+            "containerId": "898854ea-0dd1-4a42-a25e-7a9ef3c665bb",
+            "name": "DELETE - Borrar por ID",
+            "url": "http://localhost:4000/api/projects/669fe8079f305d588ff0fe58/tasks/669fe8209f305d588ff0fe5b",
+            "method": "DELETE",
+            "sortNum": 30000,
+            "created": "2024-07-23T16:34:33.316Z",
+            "modified": "2024-07-23T17:30:14.619Z",
             "headers": []
         },
         {
@@ -96,11 +125,11 @@
             "colId": "4d3f30e3-289c-40c1-a0bf-d79c47a81a90",
             "containerId": "585fd32b-d1c8-4acd-b63c-6ebd8d34057b",
             "name": "PUT - Update project",
-            "url": "http://localhost:4000/api/projects/669aab793890818e2cca734b",
+            "url": "http://localhost:4000/api/projects/669ff48594c0386b6bcc03de",
             "method": "PUT",
             "sortNum": 40000,
             "created": "2024-07-19T19:06:20.119Z",
-            "modified": "2024-07-19T19:13:39.976Z",
+            "modified": "2024-07-23T18:21:36.384Z",
             "headers": [],
             "body": {
                 "type": "json",
@@ -113,11 +142,11 @@
             "colId": "4d3f30e3-289c-40c1-a0bf-d79c47a81a90",
             "containerId": "585fd32b-d1c8-4acd-b63c-6ebd8d34057b",
             "name": "DELETE - Borrar project",
-            "url": "http://localhost:4000/api/projects/669aa35d8c8af95366a7e618",
+            "url": "http://localhost:4000/api/projects/669fe7d49f305d588ff0fe50",
             "method": "DELETE",
             "sortNum": 50000,
             "created": "2024-07-19T19:17:15.016Z",
-            "modified": "2024-07-19T19:20:16.224Z",
+            "modified": "2024-07-23T17:27:26.326Z",
             "headers": []
         },
         {
@@ -125,13 +154,30 @@
             "colId": "4d3f30e3-289c-40c1-a0bf-d79c47a81a90",
             "containerId": "898854ea-0dd1-4a42-a25e-7a9ef3c665bb",
             "name": "GET - Obtener task by Id",
-            "url": "http://localhost:4000/api/projects/669e9dd049eaf5fddd35a6b7/tasks/669eaf389da512633523599c",
+            "url": "http://localhost:4000/api/projects/669ff48594c0386b6bcc03de/tasks/669ff42a94c0386b6bcc03d4",
             "method": "GET",
             "sortNum": 80000,
             "created": "2024-07-22T19:08:13.424Z",
-            "modified": "2024-07-22T19:26:28.091Z",
+            "modified": "2024-07-23T18:21:51.177Z",
             "headers": []
+        },
+        {
+            "_id": "300372f6-ddf4-4af8-a448-31909f09d013",
+            "colId": "4d3f30e3-289c-40c1-a0bf-d79c47a81a90",
+            "containerId": "898854ea-0dd1-4a42-a25e-7a9ef3c665bb",
+            "name": "POST - Task update status",
+            "url": "http://localhost:4000/api/projects/669fe8079f305d588ff0fe58/tasks/669ff42a94c0386b6bcc03d4/status",
+            "method": "POST",
+            "sortNum": 100000,
+            "created": "2024-07-23T16:53:51.997Z",
+            "modified": "2024-07-23T18:25:36.029Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"status\": \"underReview\"\n}",
+                "form": []
+            }
         }
     ],
-    "ref": "7GV4yXOuogbrhsTGWHu9TQPdr34Mt3IOhWmbkTaWb_oXHscUpm-5frXsOv0xgSpxIIkO9cg5bAFbR8_Wkq1P1Q"
+    "ref": "7GV4yXOuogbrhsTGWHu9Tc1us7b2ZhjXSeeKnxSCCUZ5sX6a12onF8LUuV-DXsAi7E7GF4dZJw_wf957yJ7t0Q"
 }

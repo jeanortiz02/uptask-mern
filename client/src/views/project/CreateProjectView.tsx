@@ -19,7 +19,7 @@ export default function CreateProjectView() {
         description: ""
     }
 
-    const { register, handleSubmit, formState: {errors} } = useForm({defaultValues: initialValue})
+    const { register, handleSubmit, reset,formState: {errors} } = useForm({defaultValues: initialValue})
 
     const {mutate } = useMutation({
         mutationFn: createProject,
@@ -29,6 +29,8 @@ export default function CreateProjectView() {
         onSuccess: (data) => {
             toast.success(data);
             navigate("/")
+            /** Aqui */
+            reset();
         }
     })
 

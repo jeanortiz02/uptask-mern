@@ -69,7 +69,7 @@ export class TaskController {
             res.send('Tarea actualizada')
          
         } catch (error) {
-            console.log(error);
+            res.status(500).json({ error: 'Hubo un error'});
         }
     }
 

@@ -4,6 +4,8 @@ import DasboardView from "@/views/DasboardView";
 import CreateProjectView from "./views/project/CreateProjectView";
 import EditProjectView from "./views/project/EditProjectView";
 import ProjectDetailView from "./views/project/ProjectDetailView";
+import AuthLayout from "./layout/AuthLayout";
+import LoginView from "./views/auth/LoginView";
 
 
 export default function Router() {
@@ -11,11 +13,17 @@ export default function Router() {
     return (
         <BrowserRouter>
             <Routes>
+                /** Projects */
                 <Route element={<AppLayout/>} >
                     <Route path="/" element={<DasboardView/>} index />
                     <Route path="/projects/create" element={<CreateProjectView/>} />
                     <Route path="/projects/:projectId" element={<ProjectDetailView/>} />
                     <Route path="/projects/:projectId/edit" element={<EditProjectView/>} />
+                </Route>
+                
+                /** Authentication */
+                <Route element={<AuthLayout/>} >
+                    <Route path="/auth/login" element={<LoginView/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>

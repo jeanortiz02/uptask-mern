@@ -57,6 +57,23 @@ router.post('/request-code',
     AuthController.requestConfirmationCode
 )
 
+router.post('/forgot-password',  
+
+    body('email')
+        .isEmail().withMessage('Email no valido'),
+    handleInputErrors,
+
+    AuthController.forgotPassword
+)
+
+router.post('/validate-token', 
+    
+    body('token')
+       .notEmpty().withMessage('Token no puede ir vacio'),
+    handleInputErrors,
+
+    AuthController.validateToken
+)
 
 
 

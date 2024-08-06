@@ -9,10 +9,12 @@ import { authenticate } from "../middleware/auth";
 
 const router = Router();
 
+// Valida que para usar los endpoints esten autenticado
+router.use(authenticate);
+
 /* Routes for Projects */
 
 router.post('/', 
-    authenticate,
     body('projectName')
         .notEmpty().withMessage('El nombre del projecto es requerido'),
     body('clientName')

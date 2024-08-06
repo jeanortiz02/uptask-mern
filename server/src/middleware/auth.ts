@@ -19,7 +19,7 @@ export const authenticate = async (req: Request, res: Response, next: NextFuncti
     }
     // console.log(bearer.split(' ')[1])
     // Limpia el JWT
-    const token = bearer.split(' ')[1];
+    const [ ,token] = bearer.split(' ');
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET)

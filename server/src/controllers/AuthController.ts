@@ -107,7 +107,7 @@ export class AuthController {
                 return res.status(401).json({error: error.message})
             }
 
-            const tokenLogin = generateJWT({id: user.id});
+            const tokenLogin = await generateJWT({id: user.id});
             res.send(tokenLogin);
 
         } catch (error) {

@@ -1,0 +1,25 @@
+POST - Validate Token 
+
+http://localhost:4000/api/auth/validate-token
+
+{
+  token: ""
+}
+
+POST - Forgot Password
+
+http://localhost:4000/api/auth/forgot-password
+{
+  "email" : "jean@correo.com"
+}
+
+POST - Set new password with Token 
+
+http://localhost:4000/api/auth/update-password/:token
+
+{
+  password: 
+  password_confirmation:
+}
+
+

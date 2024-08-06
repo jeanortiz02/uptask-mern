@@ -4,6 +4,7 @@ import { checkPassword, hashPassword } from '../utils/auth';
 import Token from '../models/Token';
 import { generateToken } from '../utils/token';
 import { AuthEmail } from '../emails/AuthEmail';
+import { generateJWT } from '../utils/jwt';
 
 export class AuthController {
 
@@ -106,7 +107,8 @@ export class AuthController {
                 return res.status(401).json({error: error.message})
             }
 
-            res.send('Autenticado......');
+            const tokenLogin = generateJWT({id: user.id});
+            res.send(tokenLogin);
 
         } catch (error) {
             res.status(500).json({ error: 'Hubo un error' });
@@ -197,6 +199,32 @@ export class AuthController {
 
 
             res.send('Token valido, Define tu nuevo password');
+            
+        } catch (error) {
+            res.status(500).json({ error: 'Hubo un error' });
+            
+        }
+    }
+
+
+    static updatedPasswordWithToken = async (req: Request, res: Response) => {
+        try {
+            const { token } = req.params;
+            const { password } = req.body;
+
+            const tokenExist = await Token.findOne({token})
+
+            if (!tokenExist) {
+                const error = new Error('Token No Valido')
+                return res.status(404).json({ error: error.message});
+            }
+
+            const user = await User.findById(tokenExist.user);
+            user.password = await hashPassword(password);
+
+            await Promise.allSettled([user.save(), tokenExist.deleteOne()])
+
+            res.send('El password se modifico correctamente');
             
         } catch (error) {
             res.status(500).json({ error: 'Hubo un error' });

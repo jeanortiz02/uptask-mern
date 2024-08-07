@@ -1,6 +1,6 @@
 import api from "@/lib/axios";
 import { isAxiosError } from "axios";
-import { ConfirmToken, ForgotPasswordForm, NewPasswordForm, RequestConfirmationCodeForm, UserLoginForm, UserRegistrationForm } from '../types/index';
+import { ConfirmToken, ForgotPasswordForm, NewPasswordForm, RequestConfirmationCodeForm, User, UserLoginForm, UserRegistrationForm, userSchema } from '../types/index';
 
 
 export const createAccount = async (formData : UserRegistrationForm) => {
@@ -49,7 +49,7 @@ export const authenticateUser = async (formData : UserLoginForm) => {
     try {
         const url = `/auth/login`;
         const { data } = await api.post<string>(url, formData);
-        localStorage.setItem('AUTH_TOKEN', JSON.stringify(data));
+        localStorage.setItem('AUTH_TOKEN', data);
         return data;
 
     } catch (error) {
@@ -101,5 +101,20 @@ export const updatePasswordWithToken = async ({formData, token} : {formData: New
             throw new Error(error.response.data.error);
         }
     }
+}
+
+export const getUser = async() => {
+    try {
+        const url = `/auth/user`;
+        const { data } = await api.get<User>(url);
+        const response = userSchema.safeParse(data);
+        if ( response.success) {
+            return data;
+        }
+    } catch (error) {
+        if(isAxiosError(error) && error.response) {
+            throw new Error(error.response.data.error);
+    }
+}
 }
 

@@ -29,6 +29,7 @@ export class ProjectController {
             console.log(error)
         }
     }
+    
     static getProjectById = async (req: Request, resp: Response) => {
         const { id } = req.params;
         try {

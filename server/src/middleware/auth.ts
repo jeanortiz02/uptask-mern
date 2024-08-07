@@ -5,7 +5,7 @@ import User, { IUser } from "../models/User";
 declare global {
     namespace Express {
         interface Request {
-            user?: IUser;
+            user: IUser;
         }
     }
 }
@@ -19,13 +19,13 @@ export const authenticate = async (req: Request, res: Response, next: NextFuncti
     }
     // console.log(bearer.split(' ')[1])
     // Limpia el JWT
-    const [ ,token] = bearer.split(' ');
+    const token = bearer.split(' ')[1];
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET)
 
         if ( typeof decoded === 'object' && decoded.id) {
-            const user = await User.findById(decoded.id).select(' id name email')
+            const user = await User.findById(decoded.id).select('id name email')
             if (user) {
                 req.user = user;
             } else {

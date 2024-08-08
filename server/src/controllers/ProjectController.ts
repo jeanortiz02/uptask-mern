@@ -21,7 +21,8 @@ export class ProjectController {
         try {
             const project = await Project.find({
                 $or : [
-                    {manager: {$in: req.user.id}}
+                    {manager: {$in: req.user.id}},
+                    {team: {$in: req.user.id}}
                 ]
             });
             resp.json(project);
@@ -40,7 +41,7 @@ export class ProjectController {
                 return resp.status(404).json({error: error.message});
             }
 
-            if( project.manager.toString() !== req.user.id.toString()) {
+            if( project.manager.toString() !== req.user.id.toString() && !project.team.includes(req.user.id)) {
                 const error = new Error('Action no valida')
                 return resp.status(404).json({error: error.message});
             }

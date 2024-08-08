@@ -3,12 +3,14 @@ import AddTaskModal from "@/components/task/AddTaskModal";
 import EditTaskData from "@/components/task/EditTaskData";
 import TaskList from "@/components/task/TaskList";
 import TaskModalDetails from "@/components/task/TaskModalDetail";
+import { UseAuth } from "@/hooks/UseAuth";
+import { isManager } from "@/utils/policies";
 import { useQuery } from "@tanstack/react-query";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 
 
 export default function ProjectDetailView() {
-
+  const { data : user, isLoading : authLoading } = UseAuth();
   const navigate = useNavigate();
 
   const params = useParams();
@@ -21,27 +23,30 @@ export default function ProjectDetailView() {
     });
 
     
-    if (isLoading) return 'Cargando......'
+    if (isLoading && authLoading) return 'Cargando......'
     if(isError) return <Navigate to='/404'/>
-    if( data ) return (
+    if( data && user ) return (
       <>
         <h1 className="text-5xl font-black">{data.projectName}</h1>
         <p className="text-2xl font-light text-gray-500 mt-5">{data.description}</p>
 
-        <nav className="my-5 flex gap-3">
-          <button
-            type="button"
-            className="bg-purple-400 hover:bg-purple-500 px-10 py-3 text-white text-xl font-bold cursor-pointer"
-            onClick={() => navigate(location.pathname + '?newTask=true')}
-          >
-            Agregar tarea
-          </button>
+        { isManager(data.manager, user._id) && (
+          <nav className="my-5 flex gap-3">
+            <button
+              type="button"
+              className="bg-purple-400 hover:bg-purple-500 px-10 py-3 text-white text-xl font-bold cursor-pointer"
+              onClick={() => navigate(location.pathname + '?newTask=true')}
+            >
+              Agregar tarea
+            </button>
 
-          <Link
-            className="bg-fuchsia-600 hover:bg-fuchsia-700 px-10 py-3 text-white text-xl font-bold cursor-pointer"
-            to={'team'}
-          >Colaboradores</Link>
-        </nav>
+            <Link
+              className="bg-fuchsia-600 hover:bg-fuchsia-700 px-10 py-3 text-white text-xl font-bold cursor-pointer"
+              to={'team'}
+            >Colaboradores</Link>
+          </nav>
+        )}
+
         <TaskList
           tasks={data.tasks}
         />

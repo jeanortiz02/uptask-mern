@@ -112,7 +112,7 @@ router.post('/:projectId/tasks/:taskId/status',
 )
 
 /** Routes for Teams */
-router.post('/:projectId/teams/find',
+router.post('/:projectId/team/find',
     
     body('email')
         .isEmail().toLowerCase().withMessage('E-mail no valido'),
@@ -122,18 +122,18 @@ router.post('/:projectId/teams/find',
 
 )
 
-router.get('/:projectId/teams',
+router.get('/:projectId/team',
     TeamMemberController.getProjectTeam
 )
 
-router.post('/:projectId/teams',
+router.post('/:projectId/team',
     body('id')
         .isMongoId().withMessage('ID no valido'),
     handleInputErrors,
     TeamMemberController.addMemberById
 )
 
-router.delete('/:projectId/teams',
+router.delete('/:projectId/team',
     body('id')
         .isMongoId().withMessage('ID no valido'),
     handleInputErrors,

@@ -19,7 +19,8 @@ export interface ITask extends Document {
     completedBy: {
         user: Types.ObjectId,
         status: TaskStatus,
-    }[]
+    }[],
+    notes: Types.ObjectId[]
 }
 
 
@@ -60,6 +61,12 @@ export const TaskSchema : Schema = new Schema({
                 default: taskStatus.PENDING,
                 required: true,
             }
+        }
+    ],
+    notes: [
+        {
+            type: Types.ObjectId,
+            ref: 'Note',
         }
     ]
 }, {timestamps: true});

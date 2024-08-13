@@ -1,4 +1,4 @@
-import ProjectForm from "@/components/project/ProjectForm";
+import ProjectForm from "@/components/projects/ProjectForm";
 import { createProject } from "@/api/ProjectAPI";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";

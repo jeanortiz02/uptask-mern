@@ -3,10 +3,11 @@ import { Menu, MenuButton, Transition, MenuItems, MenuItem } from "@headlessui/r
 import { EllipsisVerticalIcon } from "@heroicons/react/20/solid";
 import { deleteProjectById, getProjects } from "@/api/ProjectAPI";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { UseAuth } from "@/hooks/UseAuth";
 import { isManager } from "@/utils/policies";
+import DeleteProjectModal from "@/components/projects/DeleteProjectModal";
 
 export default function DasboardView() {
   const { data : user, isLoading : authLoading } = UseAuth();
@@ -16,6 +17,8 @@ export default function DasboardView() {
   });
 
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const { mutate } = useMutation({
     mutationFn: deleteProjectById,
@@ -122,7 +125,7 @@ export default function DasboardView() {
                               <button
                                 type="button"
                                 className="block px-3 py-1 text-sm leading-6 text-red-500"
-                                onClick={() => mutate(project._id)}
+                                onClick={() => navigate(location.pathname + `?deleteProject=${project._id}`)}
                               >
                                 Eliminar Proyecto
                               </button>
@@ -144,6 +147,8 @@ export default function DasboardView() {
             </Link>
           </p>
         )}
+
+        <DeleteProjectModal/>
       </>
     );
 }

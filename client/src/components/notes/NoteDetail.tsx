@@ -35,7 +35,7 @@ export default function NoteDetail({note} : NoteDetailProps) {
         queryClient.invalidateQueries({queryKey: ['task', taskId]})
       }
     })
-    if (isLoading) 'Cargando.....'
+    if (isLoading) return 'Cargando.....'
   return (
     <>
       <div className="p-3 flex justify-between items-center">

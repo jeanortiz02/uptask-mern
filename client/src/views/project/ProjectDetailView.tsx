@@ -1,4 +1,4 @@
-import { getProjectById } from "@/api/ProjectAPI";
+import { getFullProject } from "@/api/ProjectAPI";
 import AddTaskModal from "@/components/task/AddTaskModal";
 import EditTaskData from "@/components/task/EditTaskData";
 import TaskList from "@/components/task/TaskList";
@@ -19,7 +19,7 @@ export default function ProjectDetailView() {
 
   const { data, isLoading, isError } = useQuery({
       queryKey: ["project", projectId],
-      queryFn: () => getProjectById(projectId),
+      queryFn: () => getFullProject(projectId),
       retry: false
     });
 
